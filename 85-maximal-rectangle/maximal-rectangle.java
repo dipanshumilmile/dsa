@@ -15,15 +15,15 @@ class Solution {
             }
         }
         int maxRectangle=0;
-        int rectangle=0;
+        
         for(int i=0; i<n; i++){
             int arr[]= new int[mat[0].length];
             for(int j=0; j<m; j++){
                arr[j]=mat[i][j];
                 
             }
-            rectangle=largestRectangleArea(arr);
-            maxRectangle=Math.max(rectangle, maxRectangle);
+        
+            maxRectangle=Math.max(largestRectangleArea(arr), maxRectangle);
 
         }
         return maxRectangle;
