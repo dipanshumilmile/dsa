@@ -5,13 +5,11 @@ class Solution {
        int count=1;
 
         for(int i=1; i<points.length; i++){
-            if(prevEnd>=points[i][0]){
-                
-            }
-           else {
-            prevEnd=points[i][1];
+            if(prevEnd<points[i][0]){
+                prevEnd=points[i][1];
             count++;
-           }
+            }
+           
         }
         return count;
 
