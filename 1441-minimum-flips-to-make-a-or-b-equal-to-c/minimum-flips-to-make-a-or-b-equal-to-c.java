@@ -1,18 +1,9 @@
 class Solution {
     public int minFlips(int a, int b, int c) {
-        int flips =0;
+        int res = (a|b)^c;
+        int res1 = (a&b);
+        int res2 = (res1&res);
 
-        while(a!=0 || b!=0 || c!=0){
-            if((c&1)==0){
-                if((a&1)==1) flips++;
-                if((b&1)==1) flips++;
-            }else{
-                if((a&1)==0 && (b&1)==0) flips++;
-            }
-            a >>= 1;
-            b >>= 1;
-            c >>= 1;
-        }
-        return flips;
+        return Integer.bitCount(res)+Integer.bitCount(res2);
     }
 }
