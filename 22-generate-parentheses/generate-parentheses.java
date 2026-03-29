@@ -1,23 +1,25 @@
 class Solution {
     List<String> res = new ArrayList<>();
 
-    private void backtrack(String curr, int open, int close, int n) {
-        if (curr.length() == 2 * n) {
+    private void solve(String curr, int n, int open, int close){
+        if(curr.length() == 2*n){
             res.add(curr);
             return;
         }
 
-        if (open < n) {
-            backtrack(curr + "(", open + 1, close, n);
+        if(open < n){
+            
+            solve(curr+"(", n, open+1, close);
         }
-
-        if (close < open) {
-            backtrack(curr + ")", open, close + 1, n);
+         if(close < open){
+            
+            solve(curr+")", n, open, close+1);
         }
     }
-
     public List<String> generateParenthesis(int n) {
-        backtrack("", 0, 0, n);
+
+        solve("",n,0, 0);
         return res;
+        
     }
 }
