@@ -1,22 +1,22 @@
 class Solution {
     public int[] nextGreaterElements(int[] nums) {
-        Stack<Integer> s = new Stack<>();
+        Stack<Integer> st = new Stack<>();
         int n = nums.length;
-        int []nextGreater = new int[n];
+        int []nextG = new int[n];
         for(int i = 2*n-1; i>=0; i--){
-            int indx = i%n;
-            while(!s.isEmpty() && nums[indx] >= nums[s.peek()]){
-                s.pop();
+            int indx = i % n;
+
+            while(!st.isEmpty() && nums[indx] >= nums[st.peek()]){
+                st.pop();
             }
-            if(s.isEmpty()){
-                nextGreater[indx] = -1;
-                
+            if(!st.empty()){
+                nextG[indx]=nums[st.peek()];
             }else{
-                 nextGreater[indx] = nums[s.peek()];
+               nextG[indx] = -1;
             }
-            s.push(indx);
-            
+            st.push(indx);
+
         }
-        return nextGreater;
+        return nextG;
     }
 }
