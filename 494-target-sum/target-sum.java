@@ -1,17 +1,24 @@
 class Solution {
-    private int helper(int []arr, int target, int i){
+    int absSum;
+    private int helper(int []arr, int target, int i, int sum, int [][] dp){
         if(i == arr.length) {
-            if (target == 0){
+            if (target == sum){
                 return 1;
             } 
             return 0;
         }
-        int add = helper(arr, target-arr[i], i+1);
-        int substract = helper(arr, target+arr[i], i+1);
+
+        if(dp[i][sum+absSum] != 0) return dp[i][sum+absSum];
+
+        int add = helper(arr, target, i+1, sum+arr[i], dp);
+        int substract = helper(arr, target, i+1, sum-arr[i], dp);
         
-        return add + substract;
+        return dp[i][sum+absSum] = add + substract;
     }
     public int findTargetSumWays(int[] nums, int target) {
-        return helper(nums, target,0);
+        absSum = 0;
+        for(int arr : nums) absSum += Math.abs(arr);
+        int dp[][] = new int[nums.length][absSum*2 + 1];
+        return helper(nums, target,0, 0, dp);
     }
 }
