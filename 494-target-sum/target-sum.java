@@ -8,7 +8,7 @@ class Solution {
             return 0;
         }
 
-        if(dp[i][sum+absSum] != 0) return dp[i][sum+absSum];
+        if(dp[i][sum+absSum] != -1) return dp[i][sum+absSum];
 
         int add = helper(arr, target, i+1, sum+arr[i], dp);
         int substract = helper(arr, target, i+1, sum-arr[i], dp);
@@ -19,6 +19,8 @@ class Solution {
         absSum = 0;
         for(int arr : nums) absSum += Math.abs(arr);
         int dp[][] = new int[nums.length][absSum*2 + 1];
+                for (int[] row : dp)
+                    Arrays.fill(row, -1);
         return helper(nums, target,0, 0, dp);
     }
 }
